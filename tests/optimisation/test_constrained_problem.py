@@ -312,7 +312,7 @@ def test_alkylation_problem(algorithm):
         bounds=(ALKYLATION_DATA.lower_bounds, ALKYLATION_DATA.upper_bounds),
         algorithm=algorithm,
         opt_conditions={"max_eval": 5000, "ftol_rel": 1e-9},
-        opt_parameters={"catol": 1e-14} if algorithm == Algorithm.COBYLA_SCIPY else {},
+        opt_parameters={"catol": 1e-15} if algorithm == Algorithm.COBYLA_SCIPY else {},
     )
 
     assert np.round(abs(result.f_x)) == ALKYLATION_DATA.true_f_x
