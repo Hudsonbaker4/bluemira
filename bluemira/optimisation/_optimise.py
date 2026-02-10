@@ -26,7 +26,7 @@ from bluemira.optimisation._scipy.registry import SCIPY_REGISTRY
 from bluemira.optimisation.error import OptimisationError
 from bluemira.optimisation.typed import ConstraintT, ObjectiveCallable, OptimiserCallable
 
-EPS = 10 * np.finfo(float).eps  # accumulated floating-point error margin
+EPS = 100 * np.finfo(float).eps  # accumulated floating-point error margin
 
 
 def optimise(
