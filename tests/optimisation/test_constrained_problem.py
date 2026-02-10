@@ -15,7 +15,6 @@ import numpy as np
 import pytest
 
 from bluemira.optimisation import Algorithm, optimise
-from tests._helpers import skip_if_incompatible_system
 from tests.system_check import system_compatible
 
 
