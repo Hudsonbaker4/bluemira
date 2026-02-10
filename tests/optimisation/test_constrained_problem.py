@@ -15,6 +15,8 @@ import numpy as np
 import pytest
 
 from bluemira.optimisation import Algorithm, optimise
+from tests._helpers import skip_if_incompatible_system
+from tests.system_check import system_compatible
 
 
 class AlkylationData:
@@ -273,7 +275,14 @@ def df_inequalities(x):
         Algorithm.SLSQP,
         Algorithm.SLSQP_SCIPY,
         Algorithm.COBYLA,
-        Algorithm.COBYLA_SCIPY,
+        pytest.param(
+            Algorithm.COBYLA_SCIPY,
+            marks=pytest.mark.skipif(
+                not system_compatible(),
+                reason="""This test could fail on your system due to differences"""
+                """caused by floating-point rounding differences""",
+            )
+        ),
         pytest.param(
             Algorithm.COBYQA,
             marks=pytest.mark.xfail(reason="poor handling of initial conditions"),
